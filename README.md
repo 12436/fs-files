@@ -1,1 +1,2 @@
 # fs-files
+Strings
