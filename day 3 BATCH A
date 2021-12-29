@@ -84,3 +84,53 @@ class sample
       else
         System.out.println("false");
    }
+................
+Shyam has given a word from the Dictionary and he has to encode the word by only reversing the letters of the 
+word ignoring other letters.
+
+Sample Test Case -1
+
+input = a&b*c$rt
+output = t&r*c$ba
+
+Explanation - 
+
+From the above test case we have a,b,c,r,t as the alphabets 
+and reversing only this characters without disturbing other characters we will have 
+t&r*c$ba as the output
+
+Sample Test Case -2
+
+input = a&b$c#d
+output = d&c$b#a
+
+solution:
+
+import java.util.*;
+class sample
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        ArrayList<Character>a=new ArrayList<>();
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)>=97 && s.charAt(i)<=122)
+            {
+                a.add(s.charAt(i));
+            }
+        }
+        int l=(a.size())-1;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)>=97 && s.charAt(i)<=122)
+            {
+                System.out.print(a.get(l));
+                l=l-1;
+            }
+            else
+            {
+                System.out.print(s.charAt(i));
+            }
+        }
