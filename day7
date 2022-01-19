@@ -1,0 +1,345 @@
+In a class of XII computer teacher asked one of the student to perform a task as practical session .
+
+There is a box contains N balls in it, each ball is printed with a positive integer.
+The teacher ask the student to split all the balls in the box into ball-groups, 
+each group should contain exatly S balls.
+
+The student has to pick the ball-groups as follows:
+	- the balls should be numbered consecutively.
+	e.g., 1,2 3, 4 or 4,5,6,7 etc.
+
+Finally, the student should say whether it is possible to 
+split all the balls in the box, into ball-groups accordingly.
+
+Now. its your task to help the student to find whether it is possible or not.
+if possible, print "true".
+otherwise, print "false".
+
+Input Format:
+-------------
+Line-1: Two integers N and S, number of balls and size of ball-group.
+Line-2: N space separated integers, integers printed on each ball.
+
+Output Format:
+--------------
+Print a boolean value, whether it is possible to split all the balls into groups.
+
+
+Sample Input-1:
+---------------
+8 4
+2 6 3 4 3 5 4 5
+
+Sample Output-1:
+----------------
+true
+
+Explanation:
+-------------
+Ball-groups are [2,3,4,5] and [3,4,5,6]
+
+
+Sample Input-2:
+---------------
+12 3
+12 2 9 5 3 4 13 7 6 8 11 7
+
+Sample Output-2:
+----------------
+true
+
+Explanation:
+-------------
+Ball-groups are [2,3,4], [5,6,7], [7,8,9] and [11,12,13]
+
+
+
+Sample Input-3:
+---------------
+6 3
+2 5 7 3 4 8
+
+Sample Output-3:
+----------------
+false
+
+Explanation:
+-------------
+you cannot form ball groups.
+
+solution:
+import java.util.*;
+public class sample{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        ArrayList<Integer> a=new ArrayList<Integer>();
+        ArrayList<Integer> b=new ArrayList<Integer>();
+        for(int i=0;i<n;i++){
+            a.add(sc.nextInt());
+        }
+        int z=n/m;
+        Collections.sort(a);
+        for(int i=0;i<z;i++){
+            int t=a.get(0);
+            for(int j=0;j<m;j++){
+                int temp=t+j;
+                if(a.contains(temp)){
+                    b.add(temp);
+                    a.remove(new Integer(temp));
+                }
+            } 
+            if(b.size()!=m){
+                System.out.println("false");
+                System.exit(0);
+            }
+            else{
+                b.clear();
+            }
+        }
+        System.out.println("true");
+    }
+}
+
+You are given a list of N integers List[], list contains both +ve and -ve integers.
+Your task is to findout, the Highest Product possible,
+Where the product is the product of all the elements of contiguous sublist sList[],
+and sub list should contain atleast 1 integer.
+
+Input Format:
+-------------
+Line-1: An integer N.
+Line-2: N space separated integers, List[].
+
+Output Format:
+--------------
+Print an integer output, the highest product.
+
+Sample Input-1:
+---------------
+4
+2 3 -2 4
+
+Sample Output-1:
+----------------
+6
+
+Explanation:
+------------
+Product of contiguous sub list [2,3].
+
+
+Sample Input-2:
+---------------
+3
+-2 0 -3
+
+Sample Output-2:
+----------------
+0
+
+Explanation:
+------------
+Product of sub list [0], where [-2,-3] is not a contiguous sublist
+
+
+Sample Input-3:
+---------------
+6
+2 4 3 1 -2 -3
+Sample Output-3:
+----------------
+144
+
+
+Sample Input-4:
+---------------
+6
+-2 3 4 1 2 -3
+Sample Output-4:
+----------------
+144
+
+
+Sample Input-5:
+---------------
+6
+-22 3 4 -3 -4 5
+Sample Output-5:
+----------------
+792
+
+solution:
+
+import java.util.*;
+import java.lang.Math;
+class sample
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int a[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            a[i]=sc.nextInt();
+        }
+        int max=a[0];
+        int min=a[0];
+        int prod=a[0];
+        int temp;
+        for(int i=1;i<n;i++)
+        {
+            if(a[i]<0)
+            {
+                temp=max;
+                max=min;
+                min=temp;
+            }
+            max=Math.max(a[i],max*a[i]);
+            min=Math.min(a[i],min*a[i]);
+            prod=Math.max(prod,max);
+        }
+        System.out.println(prod);
+        
+    }
+}
+
+Two lines P1 and P2 are said to be connected 
+if the end point of P1 and start point of P2 are same. 
+In this problem, there is a collection of points in 
+a two dimensional space and the point numbers are given to represent a line. 
+All the lines have distinct starting point and ending point. 
+Given the start and end point numbers of ‘n’ lines and 
+a check point number ‘p’ write a code to 
+find out the length of the closed figure that can be formed 
+that starts with the check point number ‘p’. 
+For example, given ten pairs of point numbers for 10 lines as follows:
+
+(2, 5)
+
+(7, 11)
+
+(13, 14)
+
+(11, 15)
+
+(17, 18)
+
+(15, 17)
+
+(18, 25)
+
+(32, 40)
+
+(25, 32)
+
+(40, 7)
+
+and a check point number as 7, 
+a closed figure of length 8 can be formed with the points:
+
+(7, 11) - (11, 15) - (15, 17) - (17, 18) - (18, 25) - (25, 32) - (32, 40) - (40, 7) - (7, 11)
+
+
+Input Format
+
+First line contains the number of lines, n
+
+Next ‘n’ lines contain the number of the start and end points
+
+Next line contains the check point, p
+
+Output Format
+
+Length of the closed figure that can be formed with check point, p
+
+Print zero if a closed figure cannot be formed with check point, p
+
+
+Sample input :
+10
+2 5
+7 11
+13 14
+11 15
+17 18
+15 17
+18 25
+32 40
+25 32
+40 7
+7
+
+Sample output :
+8
+
+Explnation :
+
+A check point number as 7, a closed figure of length 8 can be 
+formed with the points:
+
+(7, 11) - (11, 15) - (15, 17) - (17, 18) - (18, 25) - (25, 32) - (32, 40) - (40, 7) - (7, 11)
+
+
+
+Sample Input-1:
+4
+5 6
+11 15
+19 23
+25 39
+5
+Sample Output-1: 0
+==========================
+Sample Input-2:
+6
+10 20
+20 30
+50 60
+30 40
+40 50
+60 10
+10
+Sample Output-2: 6
+
+solution:
+import java.util.*;
+class sample
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int c=0,f=0;
+        HashMap<Integer,Integer>h=new HashMap<>();
+        for(int i=0;i<n;i++)
+        {
+            h.put(sc.nextInt(),sc.nextInt());;
+        }
+        int s=sc.nextInt();
+        int x=s;
+        s=h.get(s);
+        while(true)
+        {
+            if(h.containsKey(s))
+            {
+                s=h.get(s);
+                c++;
+            }
+            else
+            {
+                f=1;
+                System.out.println(0);
+                break;
+            }
+            if(s==x)
+            {
+                System.out.println(c+1);
+                break;
+            }
+            
+        }
+    }
+}
