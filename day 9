@@ -1,0 +1,159 @@
+You are provided a string of characters(lowercase only),
+You can change the order of the characters of the string.
+After changing the order, the resultant string should be 
+no two immidiate characters are same.
+
+Return true, if you are able to find such resultant string, 
+Otherwise false.
+
+Input Format:
+-------------
+A String S
+
+Output Format:
+--------------
+Print a boolean value.
+
+
+input = aaabd
+output = true
+
+
+input =aaab
+output =false
+
+solution:
+import java.util.*;
+class sample
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        List<String> characters = Arrays.asList(str.split(""));
+ 		Collections.shuffle(characters);
+  		String str2 = "";
+  		for(String s : characters)
+  		{
+  		    str2 += s;
+  		}
+  	
+  	//System.out.println(str2);
+  	//int j=0;
+  	//if(str2.charAt(j)!=str2.charAt(j+1))
+  	//{
+  		for(int i=0;i<str.length();i++)
+  		{
+  		    if(str.charAt(i)==str.charAt(i+1))
+  		    {
+  		        System.out.println("true");
+  		        break;
+  		    }
+  		  
+  		    else
+  		    {
+  		        System.out.println("false");
+  		        //break;
+  		    }
+  		    
+  		}
+  		
+  	
+    }
+    
+}
+
+Somesh is working on Number Strings.
+He got an idea to find the smallest possible number by 
+deleting some digits from the number without changing 
+the relative order of digits in it.
+
+You will be given a integer String 'num', and an integer n.
+Find the smallest number possible after deleting n digits from 'num'.
+
+Note: If the number string 'num' turns to empty, print 0.
+
+Input Format:
+-------------
+Line-1 : A string num, consist of digits only.
+Line-2 : An integer n, number of digits to delete.
+
+Output Format:
+--------------
+Print the smallest possible number.
+
+
+Sample Input-1:
+---------------
+1432219
+3
+
+Sample Output-1:
+----------------
+1219
+
+Explanation: 
+------------
+Delete the three digits 4, 3, and 2 to form the smallest number 1219.
+
+Sample Input-2:
+---------------
+10200
+1
+
+Sample Output-2:
+----------------
+200
+
+Explanation:
+------------
+Delete the leading 1 and the smallest number is 200. 
+Note that the output must not contain leading zeroes.
+
+solution:
+
+import java.util.*;
+class File{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        //StringBuffer sb =new StringBuffer(str);
+        int k = sc.nextInt();
+        Stack<Character> mystack = new Stack<Character>();
+        int i=0;
+        while(i<str.length()){
+            //System.out.println("top "+mystack.peek());
+            while(k>0 && !mystack.empty() && mystack.peek()>str.charAt(i)){
+                //System.out.println("top 1 "+mystack.peek());
+                mystack.pop();
+                k--;
+            }
+            mystack.push(str.charAt(i));
+            i++;
+           // System.out.println("size "+mystack.size());
+        }
+        while(k>0)
+        {
+            mystack.pop();
+            k--;
+        }
+        //System.out.println("size final "+mystack.size());
+        //for(i=0;i<mystack.size();i++)
+        StringBuffer sb = new StringBuffer();
+        while(!mystack.empty())
+        {
+            sb.append(mystack.pop());
+        }
+        sb.reverse();
+        int f=0;
+        while(f!=1){ 
+            if(sb.charAt(0)=='0')
+                sb.deleteCharAt(0);
+            else f=1;
+        }
+        if (sb.length()>1 && sb.charAt(0)!='0')
+            System.out.println(sb);
+        else System.out.println(0);
+    }
+}
+  
