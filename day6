@@ -84,3 +84,31 @@ class sample{
         System.out.println(res);
     }
 }
+
+problem:
+Gopal is given a string s, Now he has to remove duplicate letters so that every letter appears once and only once.
+
+He must make sure that the result produces should occur in the order given in string 
+
+Example 1:
+
+Input = bcabc
+Output = bca
+
+solution:
+import java.util.*;
+class sample
+{
+    public static void main(String args[])
+    {
+        LinkedHashSet<Character> hs = new LinkedHashSet<Character>();
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        for(int i=0;i<str.length();i++)
+        {
+            hs.add(str.charAt(i));
+        }
+        for(Character ch : hs)
+          System.out.print(ch);
+    }     
+}
