@@ -1,0 +1,135 @@
+You will be given a area of a matrix. Where the matrix has a
+value 1/0. 1 represent the land and 0 represents the water.
+
+The matrix is connected both row and column wise not diagonally. 
+the matrix is surronded by water completely and there is exactly 1 island (i.e, 1 or more connected land cells)
+
+The island doesn't have "lakes", meaning the water inside isn't connected to the
+water around the island. One cell is a square with side length 1. The matrix is
+rectangular,. we have to find  perimeter of the island.
+
+
+input=4 4
+0 1 0 0
+1 1 1 0
+0 1 0 0
+1 1 0 0
+output=16
+
+Explanation- The perimeter is the 16 yellow stripes in the image above.
+
+solution:
+import java.util.*;
+class sample{
+    
+    static void func(int[][] grid,int r,int c, int count){
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(grid[i][j] ==1){
+                    count-=(check(grid,i,j,r,c));
+                }
+            }
+        }
+        System.out.println(count);
+        
+    }
+    
+    static int check(int[][] grid,int i,int j,int r,int c){
+        int cnt=0;
+        
+        if(i!=0){if(grid[i-1][j]==1) { cnt+=2;}}
+        //if(i!=r-1){if(grid[i+1][j]==1) {cnt+=2;}}
+        if(j!=c-1){if(grid[i][j+1]==1) {cnt+=2;}}
+        //if(j!=0){if(grid[i][j-1]==1){cnt+=2;}}
+        
+        return cnt;
+        
+    }
+    
+    
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        
+        int r = sc.nextInt(),c=sc.nextInt();
+        int grid[][] = new int[r][c];
+        
+        int count=0;
+        
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                grid[i][j] = sc.nextInt();
+                if(grid[i][j] ==1) count++;
+            }
+        }
+        
+        //System.out.println(count*4);
+        
+        func(grid,r,c,count*4);
+    }
+}
+
+problem 2:
+
+The order of the characters should remain same,and he cannot break the word and print it into two lines 
+A white space should separate two words in a line
+
+The first line of input contains the words followed by height and width size of the paper. 
+
+If he is not able to print on the given paper atlease once then print 0
+
+input=hello world
+2 8
+output=1
+
+Explanation:
+hello_ _ _
+world_ _ _
+
+He can print only one time on the given plain white paper
+
+
+input=b efg h 
+3 6
+output=2
+
+Explanation:
+b_efg _
+h_b_ _ _ 
+efg_h
+
+solution:
+import java.util.*;
+class sample{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        
+        String str =sc.nextLine();
+        String[] arr = str.split(" ");
+        int height = sc.nextInt();
+        int width = sc.nextInt();
+    
+        int i=0;
+        int count = 0;
+        
+        
+        
+        while(height!=0){
+            
+            int w = width;
+            
+            while(w-arr[i].length() >=0){
+                w = w - arr[i].length() - 1;
+                i++;
+            
+            
+                if(i==arr.length){
+                    count ++;
+                    i=0;
+                }
+            }
+            height--;
+        }
+     
+        System.out.println(count);
+    }
+}
