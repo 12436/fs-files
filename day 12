@@ -1,0 +1,147 @@
+Ramu has given a task to break his friends code 
+he will given all lower case alphabets  and code as the input 
+Ramu has to figure the text from the code and display the text 
+
+Input - The first line of input consists of lower case alphabets 
+and code 
+
+The first alphabet letter will given 01, second alphabet will be given 02, and so on 
+
+Output - Break the code and display the string 
+
+
+Sample Test Case - 1 
+input =abcdefghijklmnopqrstuvwxyz
+110525
+output = key
+
+
+Explantion - 
+From the above test case we have 'a' has '01', 'b' has '02', and finally 'z' has '26' 
+where each alphabet will be assigned a two digit number 
+and for the code 110525 the characters will be 11 as 'k', 05 as 'e' and 25 as 'y' 
+so the output is "key" 
+
+Sample Test Case - 2
+input =
+qpwoeirutyalskdjfhgzmxncbv
+131013090521
+output = system
+
+
+Explantion - From the above test case we have 'q' as '01' , 'p' as '02' and finally 'v' as '26'
+and for the code 131013090521 we have the following code 
+13-s
+10-y
+13-s
+09-t
+05-e
+21-m
+
+so the output is system
+
+solution:
+
+import java.util.*;
+class sample {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+     String str = sc.next(); 
+      char sArr[] = str.toCharArray();
+      String n = sc.next();
+      StringBuilder text = new StringBuilder();
+      for (int i=0; i<n.length(); i = i+2) {
+        int num = Integer.parseInt(n.substring(i,i+2));
+        text.append(sArr[num-1]);
+	  }
+      System.out.println(text.toString());
+    }
+  }
+  
+  
+  You are given a string S, consist of both lowercase and uppercase alphabets.
+
+Your task is to find out the length of the longest word W with the 
+following properties:
+	- The word should be the longest.
+	- The word can be formed with letters of S, and you can shuffle the letters 
+	as your need. You cannot use the letters more than their occurence count.
+	- The word should be equal to the reverse of it.
+	
+NOTE: Alphabets are case sensitive
+"Aa" is  not equal to "aA". The letters 'a' and 'A' are not same
+
+Input Format:
+-------------
+A string S, consist of lower/uppercase letters
+
+Output Format:
+--------------
+Print an integer, length of longest word W.
+
+
+Sample Input-1:
+---------------
+pqrrrrss
+
+Sample Output-1:
+----------------
+7
+
+Explanation:
+------------
+One of the longest word can be formed is "srrqrrs", with length 7.
+
+
+Sample Input-2:
+---------------
+AIbohPhObia
+
+Sample Output-2:
+----------------
+5
+
+Explanation:
+------------
+One of the longest word can be formed is "bhPhb", with length 5.
+
+solution:
+import java.util.*;
+class sample
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        int c=0;
+        HashMap<Character,Integer> hm = new HashMap<Character,Integer>();
+        for(int i=0;i<str.length();i++)
+        {
+            //int c=1;
+        if(!hm.containsKey(str.charAt(i)))
+        {
+            hm.put(str.charAt(i),1);
+        }
+        else
+        {
+            hm.put(str.charAt(i),hm.get(str.charAt(i))+1);
+        }
+        }
+        for(Map.Entry<Character,Integer> e : hm.entrySet())
+        {
+           // System.out.println(e.getValue());
+           if(e.getValue()%2==0)
+           {
+               c=c+e.getValue();
+           }
+           else
+           {
+               c=c+(e.getValue()-1);
+           }
+        }
+        System.out.println(c+1);
+        
+        
+        
+    }
+}
